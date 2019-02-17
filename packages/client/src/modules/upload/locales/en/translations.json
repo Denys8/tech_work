@@ -1,0 +1,23 @@
+{
+  "navLink": "Upload",
+  "title": "Upload",
+  "meta": "Upload example page",
+  "message": "Try dropping some files here, or click to select files to upload.",
+  "table": {
+    "column": {
+      "name": "File name",
+      "check": "Invoice/Docket",
+      "supplier": "Supplier Name",
+      "doc#": "Document #",
+      "date": "Date",
+      "netValue": "Net Value",
+      "qty": "QTY",
+      "vatRegID": "Vat Reg ID",
+      "status": "Status",
+      "spinner": "",
+      "actions": "Actions"
+    },
+    "btnDel": "Delete"
+  },
+  "nativeMock": "Hello Upload!"
+}
