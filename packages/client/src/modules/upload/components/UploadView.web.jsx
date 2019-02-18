@@ -20,7 +20,6 @@ const UploadView = ({
   error,
   answer,
   loading,
-  loading_spinner,
   handleUploadFiles,
   handleRemoveFile,
   t
@@ -38,7 +37,7 @@ const UploadView = ({
       />
     );
   };
-
+  
   const columns = [
     {
       title: t("table.column.name"),
@@ -97,12 +96,8 @@ const UploadView = ({
       dataIndex: "spinner",
       key: "spinner",
       render() {
-        const loadingSpinner = loading_spinner ? <Spinner /> : null;
-        return (
-          <span>
-            {loadingSpinner}
-          </span>
-        );
+        const loadingSpinner = answer.loading_spinner ? <Spinner /> : null;
+        return <span>{loadingSpinner}</span>;
       }
     },
     {

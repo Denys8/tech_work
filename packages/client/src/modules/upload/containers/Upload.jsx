@@ -12,7 +12,6 @@ class Upload extends React.Component {
     super(props);
     this.state = {
       error: null,
-      loading_spinner: false,
       answer: {
         check: null,
         supplier: null,
@@ -21,16 +20,17 @@ class Upload extends React.Component {
         netValue: null,
         qty: null,
         vatRegID: null,
-        status: null
+        status: null,
+        loading_spinner: false
       }
     };
   }
 
-  Upload = () => {
+  Uploading = () => {
     console.log("Upload");
     this.setState({
       answer: {
-        status: "Upload"
+        loading_spinner: true
       }
     });
     setTimeout(this.Splitting, 2000);
@@ -40,7 +40,8 @@ class Upload extends React.Component {
     console.log("Splitting");
     this.setState({
       answer: {
-        status: "Splitting"
+        status: "Splitting",
+        loading_spinner: true
       }
     });
     setTimeout(this.Recognizing, 5000);
@@ -50,7 +51,8 @@ class Upload extends React.Component {
     console.log("Recognizing");
     this.setState({
       answer: {
-        status: "Recognizing"
+        status: "Recognizing",
+        loading_spinner: true
       }
     });
     setTimeout(this.Done, 5000);
@@ -59,7 +61,6 @@ class Upload extends React.Component {
   Done = () => {
     console.log("Done");
     this.setState({
-      loading_spinner: false,
       answer: {
         check: "1/3",
         supplier: "Jhon",
@@ -68,7 +69,8 @@ class Upload extends React.Component {
         netValue: "132.00",
         qty: "23",
         vatRegID: "ei123",
-        status: "Done"
+        status: "Done",
+        loading_spinner: false
       }
     });
   };
@@ -76,10 +78,13 @@ class Upload extends React.Component {
   handleUploadFiles = async files => {
     const { uploadFiles } = this.props;
     const result = await uploadFiles(files);
-    this.Upload();
+    this.Uploading();
     this.setState({
       error: result && result.error ? result.error : null,
-      loading_spinner: true
+      answer: {
+        status: "Uploading",
+        loading_spinner: true
+      }
     });
   };
 
@@ -96,8 +101,6 @@ class Upload extends React.Component {
         {...this.props}
         error={this.state.error}
         answer={this.state.answer}
-        loading_spinner={this.state.loading_spinner}
-        done={this.state.done}
         handleRemoveFile={this.handleRemoveFile}
         handleUploadFiles={this.handleUploadFiles}
       />
